@@ -1,50 +1,69 @@
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
+
+
 @Data
+
 public class Product {
 
 
- @JsonProperty
+@JsonProperty("lastChangeDate")
  String lastChangeDate;
- @JsonProperty
- static
- String supplierArticle;
- @JsonProperty
+@JsonProperty("supplierArticle")
+String supplierArticle;
+@JsonProperty ("techSize")
  String techSize;
- @JsonProperty
+@JsonProperty ("barcode")
  String barcode;
- @JsonProperty
+@JsonProperty("totalPrice")
  int totalPrice;
- @JsonProperty
+@JsonProperty ("discountPercent")
  int discountPercent;
- @JsonProperty
+@JsonProperty ("warehouseName")
  String warehouseName;
- @JsonProperty
+@JsonProperty ("oblast")
  String oblast;
- @JsonProperty
+@JsonProperty("incomeID")
  int incomeID;
- @JsonProperty
+@JsonProperty("odid")
  long odid;
- @JsonProperty
+@JsonProperty("nmId")
  int nmId;
- @JsonProperty
+@JsonProperty("subject")
  String subject;
- @JsonProperty
+@JsonProperty ("category")
  String category;
- @JsonProperty
+@JsonProperty("brand")
  String brand;
- @JsonProperty
+@JsonProperty("isCancel")
  String isCancel;
- @JsonProperty
+@JsonProperty("cancel_dt")
  String cancel_dt;
- @JsonProperty
+@JsonProperty("gNumber")
  String gNumber;
- @JsonProperty
+@JsonProperty("sticker")
  String sticker;
- @JsonProperty
+@JsonProperty("srid")
  String srid;
- @JsonProperty
+@JsonProperty ("date")
  String date;
 
+ @Override
+ public String toString() {
+  return "Product:" +"\n"+
+          "lastChangeDate='" + lastChangeDate + '\'' + "\n"+
+          ", supplierArticle='" + supplierArticle + '\'' + "\n"+
+          "barcode='" + barcode + '\'' +"\n"+
+          "totalPrice=" + totalPrice + "\n"+
+          "discountPercent=" + discountPercent + "\n"+
+          "warehouseName='" + warehouseName + '\'' + "\n"+
+          "oblast='" + oblast + '\'' + "\n"+
+          "subject='" + subject + '\'' + "\n"+
+          "category='" + category + '\'' + "\n"+
+          "brand='" + brand + '\'' + "\n"+
+          "date='" + date + '\'' +
+          ':';
+ }
 }

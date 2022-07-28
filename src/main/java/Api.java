@@ -7,15 +7,16 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import static org.apache.http.impl.client.HttpClientBuilder.*;
 
 public class Api {
-    public static ObjectMapper mapper = new ObjectMapper();
-    public static List<Product> httpClientSeller(String url1) throws IOException {
+
+    public static List<Product> httpClientSeller(String url) throws IOException {
         CloseableHttpClient httpClient = create()
-                .setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36\n")
+                .setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 Safari/605.1.15")
                 .setDefaultRequestConfig(RequestConfig.custom()
                         .setConnectTimeout(5000)
                         .setSocketTimeout(30000)
@@ -23,29 +24,66 @@ public class Api {
                         .build())
                 .build();
 
-        HttpGet request = new HttpGet(url1);
+        HttpGet request = new HttpGet(url);
         request.setHeader(HttpHeaders.ACCEPT, ContentType.APPLICATION_JSON.getMimeType());
         CloseableHttpResponse response = httpClient.execute(request);
-        List<Product> post = (ArrayList<Product>) mapper.readValue(response.getEntity().getContent(), new TypeReference<List<Product>>() {
-        });
+        List<Product> post = mapper.readValue(response.getEntity().getContent(), new TypeReference<List<Product>>() {});
         return post;
     }
-
-    public String creareUrl(){
-
-        return null;
-    }
-
+    public static ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException {
-        String key = "KEY";
-        final String url = "https://suppliers-stats.wildberries.ru/api/v1/supplier/orders?dateFrom=2022&key=" + key;
 
-       List<Product> post = httpClientSeller(url);
-       post.stream().forEach(System.out::println);
+        String key ="&key=YjI2YmEyYzgtNmMxNi00YzdlLWI2MGEtYzNmMTExNTQwNTMy";
+        final String urlOrders = "https://suppliers-stats.wildberries.ru/api/v1/supplier/orders?";
+        final String urlSales = "https://suppliers-stats.wildberries.ru/api/v1/supplier/sales?";
+                ;
+//
 
-        }
+        Scanner scanner = new Scanner(System.in);
+
+         while (true){
+                System.out.println("----------------------------------------");
+                System.out.println("Выберите операцию");
+                System.out.println("----------------------------------------");
+                System.out.println("1.Заказы");
+                System.out.println("2.Выкупы");
+                System.out.println("3.Остатки");
+                System.out.println("4.Отчет за день");
+
+        String input = scanner.nextLine();
+        int operation = Integer.parseInt(input);
+        switch (operation){
+                case 1:
+                    System.out.println("Введите дату формат год-месяц-день");
+                    String dateA = "dateFrom="+scanner.nextLine();
+                    List<Product> post = httpClientSeller(urlOrders+dateA+key);
+                    long orderProdukt =  post.stream().count();
+                    System.out.println("Заказано " + orderProdukt + " шт");
+                    post.stream().forEach(System.out::println);
+                case 2:
+                    System.out.println("Введите дату формат год-месяц-день");
+                    String dateB = "dateFrom="+scanner.nextLine();
+                    List<Product> postSales = httpClientSeller(urlSales+dateB+key);
+                    long saleProdukt =  postSales.stream().count();
+                    System.out.println("Выкуплено " + saleProdukt + " шт");
+                    postSales.stream().forEach(System.out::println);
+                case 3:
+
+
+                case 4:
+
+
+
+           }
+
+
+
+
+
+       }
     }
+}
 
 
 
