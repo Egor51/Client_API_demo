@@ -38,7 +38,7 @@ public class Api {
 
 
     public static void main(String[] args) throws IOException {
-        String key = "YjI2YmEyYzgtNmMxNi00YzdlLWI2MGEtYzNmMTExNTQwNTMy";
+        String key = "KEY";
         final String url = "https://suppliers-stats.wildberries.ru/api/v1/supplier/orders?dateFrom=2022&key=YjI2YmEyYzgtNmMxNi00YzdlLWI2MGEtYzNmMTExNTQwNTMy";
 
        List<Product> post = httpClientSeller(url);
