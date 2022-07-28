@@ -37,7 +37,7 @@ public class Api {
 
     public static void main(String[] args) throws IOException {
 
-        String key ="&key=YjI2YmEyYzgtNmMxNi00YzdlLWI2MGEtYzNmMTExNTQwNTMy";
+        String key ="XXXXXXXX";
         final String urlOrders ="https://suppliers-stats.wildberries.ru/api/v1/supplier/orders?";
         final String urlSales ="https://suppliers-stats.wildberries.ru/api/v1/supplier/sales?";
 
