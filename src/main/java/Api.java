@@ -39,7 +39,7 @@ public class Api {
 
     public static void main(String[] args) throws IOException {
         String key = "KEY";
-        final String url = "https://suppliers-stats.wildberries.ru/api/v1/supplier/orders?dateFrom=2022&key=YjI2YmEyYzgtNmMxNi00YzdlLWI2MGEtYzNmMTExNTQwNTMy";
+        final String url = "https://suppliers-stats.wildberries.ru/api/v1/supplier/orders?dateFrom=2022&key=" + key;
 
        List<Product> post = httpClientSeller(url);
        post.stream().forEach(System.out::println);
